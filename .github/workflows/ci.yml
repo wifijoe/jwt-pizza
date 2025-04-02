@@ -108,3 +108,7 @@ jobs:
             ${{ github.event.head_commit.message }}
   
             **commit**: ${{ github.sha }}
+      - name: Annotate deployment in Grafana
+        run: |
+          curl -s -X POST https://missinginfo.grafana.net/api/annotations -H "Authorization: Bearer ${{ secrets.GRAFANA_ACCESS_TOKEN }}" -H "Content-Type:application/json" -d '{"dashboardUID":"cegofhewl3x8gf", "panelId":2, "tags":["frontend","dev"], "text":"Version '"$version"' deployed" }'
+
