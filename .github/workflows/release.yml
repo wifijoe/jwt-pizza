@@ -57,4 +57,8 @@ jobs:
     - name: Annotate deployment in Grafana
       run: |
         curl -s -X POST https://missinginfo.grafana.net/api/annotations -H "Authorization: Bearer ${{ secrets.GRAFANA_ACCESS_TOKEN }}" -H "Content-Type:application/json" -d '{"dashboardUID":"cegofhewl3x8gf", "panelId":2, "tags":["frontend","production"], "text":"Version '"$version"' deployed" }'
+    - name: Run Dastardly Action Step
+      uses: PortSwigger/dastardly-github-action@main
+      with:
+        target-url: 'https://pizza.missinginfo.me'
 
